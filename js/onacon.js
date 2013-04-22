@@ -98,6 +98,9 @@ var Onacon = null;
       }
       return vels;
     },
+    allStrokes:function(p){
+      return Onacon.velocity[p].insert_times;
+    },
     start:function(){
       Onacon.pausing = false;
     },

@@ -1,6 +1,18 @@
 var onacon = new Onacon();
 onacon.start();
 
+$(function(){
+  $('#download').click(function(){
+      var blob = new Blob([onacon.allStrokes(0).toString()]);
+      var url = window.URL || window.webkitURL;
+      var blobURL = url.createObjectURL(blob);
+      var a = document.createElement('a');
+      a.download = 'data.csv';
+      a.href = blobURL;
+      a.click();
+  });
+});
+
 //show velocity
 setInterval(function(){
   $('span#buttons').text(onacon.onacons()[0].buttons);
