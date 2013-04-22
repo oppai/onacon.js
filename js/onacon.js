@@ -33,7 +33,7 @@ var Onacon = null;
         this.inserting = ( b == 1 );
       };
       calcVelocity.prototype.v = function(){
-        var limit = this.insert_times.length - fps_val*3;
+        var limit = this.insert_times.length - Onacon.fps_val*3;
         var sum = 0;
         for (var j = this.insert_times.length - 1; limit > 0 && j >= limit; j--) {
           sum += this.insert_times[j]
