@@ -1,4 +1,3 @@
-//$(function(){
   var gamepadSupportAvailable = !!navigator.webkitGetGamepads || !!navigator.webkitGamepads;
   if(!gamepadSupportAvailable){
     alert('Your browser is not supported. It use the GamePadAPI on Chrome and Firefox.');
@@ -39,7 +38,7 @@
       var gamepads = navigator.webkitGetGamepads && navigator.webkitGetGamepads();
       var pad = gamepads[0];
 
-      if(pad.buttons){
+      if(pad){
         $('span#buttons').text(pad.buttons);
         calcVelocity(pad.buttons[0]);
       }
