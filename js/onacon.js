@@ -45,6 +45,12 @@ var Onacon = null;
     }
 
     /* main loop */
+    Onacon.shoot = new Array(pads_length);
+    for (var i = 0; i < pads_length; i++) {
+      Onacon.shoot[i] = function(){};
+    }
+
+    /* main loop */
     Onacon.pads = new Array(pads_length);
     window.requestAnimationFrame(function runtimeLoop(){
         window.requestAnimationFrame(runtimeLoop);
@@ -55,6 +61,10 @@ var Onacon = null;
             Onacon.pads[i] = gamepads[i];
             if ( gamepads[i] ){
               Onacon.velocity[i].calc( Onacon.pads[i].buttons[0] );
+
+              if(Onacon.pads[i].buttons[1]){
+                Onacon.shoot[i]();
+              }
             }
           };
           FPS();
@@ -93,6 +103,9 @@ var Onacon = null;
     },
     stop:function(){
       Onacon.pausing = true;
+    },
+    shoot:function(i,f){
+      Onacon.shoot[i] = f;
     },
     time:function(){
       return Onacon.total_time_sec;
