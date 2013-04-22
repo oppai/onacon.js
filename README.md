@@ -1,7 +1,7 @@
-ONACOUNTER-JS
+Onacon.js
 =============
 
-This is ONACOUNTER on the Browser.
+This is controller on the javascript.
 
 + Using GamePadAPI
 
