@@ -1,13 +1,6 @@
 var Onacon = null;
 
 (function() {
-  //オブジェクトコピー
-  function copy(obj) {
-    var hoge = function(){};
-    hoge.prototype = obj;
-    return hoge;
-  }
-
   Onacon = function(){
     /* initialize */
     var gamepadSupportAvailable = !!navigator.webkitGetGamepads || !!navigator.webkitGamepads;
@@ -15,6 +8,7 @@ var Onacon = null;
       console.log('error:Your browser is not supported. It use the GamePadAPI on Chrome and Firefox.');
       return;
     }
+    var pads_length = (navigator.webkitGetGamepads && navigator.webkitGetGamepads()).length;
 
     /* calc fps */
     Onacon.fps_val = 0.0;
@@ -27,7 +21,6 @@ var Onacon = null;
     FPS.start = new Date();
 
     /* create velocity instans */
-    var pads_length = (navigator.webkitGetGamepads && navigator.webkitGetGamepads()).length;
     Onacon.velocity = new Array(pads_length);
     for (var i = 0; i < pads_length; i++) {
       var calcVelocity = function (b){
@@ -50,7 +43,7 @@ var Onacon = null;
     }
 
     /* main loop */
-    Onacon.pads = new Array();
+    Onacon.pads = new Array(pads_length);
     window.requestAnimationFrame(function runtimeLoop(){
         window.requestAnimationFrame(runtimeLoop);
 
