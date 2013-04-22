@@ -59,7 +59,7 @@ var Onacon = null;
         }
     });
 
-    //calc timer
+    /* calc timer */
     Onacon.pausing = true;
     Onacon.total_time_sec = 0;
     setInterval(function(){
@@ -69,7 +69,7 @@ var Onacon = null;
     },1000);
   };
 
-  /* interface prototypes */
+  /* prototype interface */
   Onacon.prototype = {
     onacons:function(){
       return Onacon.pads;
