@@ -8,7 +8,7 @@ This is controller on the javascript.
 
 ScreenShot
 -------------
-![Alt text](https://github.com/oppai/ONACOUNTER-JS/blob/master/ss1.png?raw=true "Screen Capture1")
+![Alt text](https://github.com/oppai/onacon.js/blob/master/ss1.png?raw=true "Screen Capture1")
 
 Browser
 -------------
