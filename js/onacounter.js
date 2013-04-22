@@ -17,27 +17,25 @@ setInterval(function(){
   $('span#total_time').text(onacon.time());
 },1000);
 
-google.load('visualization', '1', {packages:['gauge']});
+var p = 0;
+google.load('visualization', '1', {packages:['corechart']});
 google.setOnLoadCallback(drawChart);
 function drawChart() {
   var data = google.visualization.arrayToDataTable([
-    ['Label', 'Value'],
-    ['Speed', 0]
+    ['Time(sec)', 'times/sec'],
+    ['0.0',  0]
   ]);
 
   var options = {
-    width: 400, height: 120,
-    redFrom: 90, redTo: 100,
-    yellowFrom:75, yellowTo: 90,
-    minorTicks: 5
+    title: 'Your Masterbation Velocity.',
+    hAxis: {title: 'Velocity of Masterbation',  titleTextStyle: {color: 'red'}}
   };
 
-  var chart = new google.visualization.Gauge(document.getElementById('chart_div'));
+  var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
   chart.draw(data, options);
 
   setInterval(function(){
-    var v = 20 * onacon.velocity(0);
-    data.setValue(0, 1, v?Math.min(v,100):0);
+    data.addRow([(++p/10)+'',onacon.velocity(0)]);
     chart.draw(data, options);
   }, 100);
 }
