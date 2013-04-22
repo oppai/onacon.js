@@ -23,23 +23,25 @@ var Onacon = null;
     /* create velocity instans */
     Onacon.velocity = new Array(pads_length);
     for (var i = 0; i < pads_length; i++) {
-      var calcVelocity = function (b){
-        calcVelocity.insert_times.push( (calcVelocity.inserting && b == 0 )?1:0 );
-        calcVelocity.inserting = ( b == 1 );
+      var calcVelocity = function(){
+        this.inserting = false;
+        this.insert_times = new Array();
+        this.timestamp = new Date();
       };
-      calcVelocity.v = function(){
-        var limit = calcVelocity.insert_times.length - fps_val*3;
+      calcVelocity.prototype.calc = function (b){
+        this.insert_times.push( (this.inserting && b == 0 )?1:0 );
+        this.inserting = ( b == 1 );
+      };
+      calcVelocity.prototype.v = function(){
+        var limit = this.insert_times.length - fps_val*3;
         var sum = 0;
-        for (var j = calcVelocity.insert_times.length - 1; j >= limit; j--) {
-          sum += calcVelocity.insert_times[j]
+        for (var j = this.insert_times.length - 1; limit > 0 && j >= limit; j--) {
+          sum += this.insert_times[j]
         };
         return Math.floor(10 * sum/3)/10;
       };
-      calcVelocity.inserting = false;
-      calcVelocity.insert_times = new Array();
-      calcVelocity.timestamp = new Date();
 
-      Onacon.velocity[i] = calcVelocity;
+      Onacon.velocity[i] = new calcVelocity();
     }
 
     /* main loop */
@@ -52,7 +54,7 @@ var Onacon = null;
           for (var i = 0; i < gamepads.length; i++) {
             Onacon.pads[i] = gamepads[i];
             if ( gamepads[i] ){
-              Onacon.velocity[i]( Onacon.pads[i].buttons[0] );
+              Onacon.velocity[i].calc( Onacon.pads[i].buttons[0] );
             }
           };
           FPS();
