@@ -39,8 +39,8 @@ function drawChart() {
   ]);
 
   var options = {
-    title: 'Your Masterbation Velocity.',
-    hAxis: {title: 'Velocity of Masterbation',  titleTextStyle: {color: 'red'}}
+    title: 'Your Stroke Velocity.',
+    hAxis: {title: 'Velocity of Stroke',  titleTextStyle: {color: 'red'}}
   };
 
   var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
