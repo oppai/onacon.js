@@ -47,7 +47,8 @@ function drawChart() {
   chart.draw(data, options);
 
   setInterval(function(){
-    data.addRow([(++p/10)+'',onacon.velocity(0)]);
+    var i = data.addRow([(++p/10)+'',onacon.velocity(0)]);
+    if(i > 200) data.removeRow(0);
     chart.draw(data, options);
   }, 100);
 }
